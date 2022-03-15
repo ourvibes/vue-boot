@@ -1,20 +1,16 @@
 <template>
   <el-aside>
     <el-scrollbar>
-      <el-menu>
+      <el-menu router :default-active="route.path">
         <el-sub-menu index="1">
           <template #title>
             <el-icon><Location /></el-icon>
             <span>基本布局</span>
           </template>
           <el-menu-item-group title="图表类">
-            <router-link to="/some-table" class="link">
-              <el-menu-item index="1-1">表格</el-menu-item>
-            </router-link>
+            <el-menu-item index="/some-table">表格</el-menu-item>
 
-            <router-link to="/some-chart" class="link">
-              <el-menu-item index="1-2">echarts</el-menu-item>
-            </router-link>
+            <el-menu-item index="/some-chart">echarts</el-menu-item>
           </el-menu-item-group>
         </el-sub-menu>
 
@@ -24,9 +20,7 @@
             <span>帮助</span>
           </template>
           <el-menu-item-group title="基础">
-            <router-link to="/some-tool" class="link">
-              <el-menu-item index="2-1">工具类</el-menu-item>
-            </router-link>
+            <el-menu-item index="/some-tool">工具类</el-menu-item>
           </el-menu-item-group>
         </el-sub-menu>
       </el-menu>
@@ -36,6 +30,10 @@
 
 <script lang="ts" setup>
 import { Location, Compass } from "@element-plus/icons-vue";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
+
 </script>
 
 <style lang="less" scoped>

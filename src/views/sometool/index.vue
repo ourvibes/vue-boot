@@ -1,39 +1,47 @@
 <template>
   <el-row :gutter="12">
-    <el-col :span="8">
-      <el-card shadow="always">实时时间： {{ now }} </el-card>
+    <el-col :span="12">
+      <el-card shadow="always">时间： {{ now }}</el-card>
     </el-col>
 
-    <el-col :span="8">
-      <el-card shadow="always">随机字符串： {{ uid }} </el-card>
+    <el-col :span="12">
+      <el-card shadow="always">随机字符串： {{ uid }}</el-card>
     </el-col>
+  </el-row>
 
-    <el-col :span="8">
-      <el-card shadow="always"
-        >导出excel： <el-button @click="handleExportExcel">导出</el-button>
+  <el-divider border-style="dashed" />
+
+  <el-row :gutter="12">
+    <el-col :span="12">
+      <el-card shadow="always">
+        导出excel：
+        <el-button @click="handleExportExcel">导出</el-button>
       </el-card>
     </el-col>
 
-    <el-col :span="8">
-      <el-card shadow="always"
-        >下载图片： <el-button @click="handleDownlaodImg">下载</el-button>
+    <el-col :span="12">
+      <el-card shadow="always">
+        下载图片：
+        <el-button @click="handleDownlaodImg">下载</el-button>
       </el-card>
     </el-col>
+  </el-row>
 
+  <el-divider border-style="dashed" />
+
+  <el-row :gutter="12">
+    <el-col :span="12">
+      <el-card shadow="always">
+        数字格式化：{{ num }}, {{ percent }}
+      </el-card>
+    </el-col>
   </el-row>
 </template>
 
-<script setup>
-import { onUnmounted, ref } from "vue";
-import { formatTime, getUid, exportExcel, downlaodImg } from "@tools/index.ts";
+<script setup lang="ts">
+import { formatTime, getUid, exportExcel, downlaodImg, formatNum, PERCENT_FORMAT } from "@tools";
 
-let now = ref();
-
-const interval = setInterval(() => {
-  now.value = formatTime();
-}, 100);
-
-onUnmounted(() => clearInterval(interval));
+let now = formatTime();
 
 const uid = getUid();
 
@@ -52,4 +60,8 @@ const handleExportExcel = () => {
 const handleDownlaodImg = () => {
   downlaodImg('https://cn.vuejs.org/images/logo.svg');
 };
+
+const num = formatNum(123456789);
+
+const percent = formatNum(0.7632, PERCENT_FORMAT)
 </script>
