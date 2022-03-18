@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import path from "path";
+import * as path from "path";
 
 const _resolve = (dir) => path.resolve(__dirname, dir);
 
@@ -13,6 +13,7 @@ export default defineConfig({
       "@views": _resolve("./src/services"),
       "@assets": _resolve("./src/assets"),
       "@tools": _resolve("./src/tools"),
+      "@request": _resolve("./src/request"),
     },
   },
   server: {
